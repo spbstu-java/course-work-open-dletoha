@@ -1,43 +1,43 @@
 package labs.lab4.runner;
 
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import labs.lab4.steamApiMethods.MyMethods;
 
 public class Runner {
-    public static void main(String[] args) {
-        // Пример для среднего значения
-        List<Integer> numbers = Arrays.asList(10, 20, 30, 40, 50);
+
+    public static void runAverage(List<Integer> numbers, Consumer<String> printer) {
         double avg = MyMethods.average(numbers);
-        System.out.println("Среднее значение: " + avg);
+        printer.accept("Среднее: " + avg);
+    }
 
-        // Пример для преобразования строк
-        List<String> strings = Arrays.asList("apple", "banana", "cherry");
-        List<String> transformed = MyMethods.transformStrings(strings);
-        System.out.println("Преобразованные строки: " + transformed);
+    public static void runTransform(List<String> strings, Consumer<String> printer) {
+        List<String> result = MyMethods.transformStrings(strings);
+        printer.accept("Преобразованные строки: " + result.toString());
+    }
 
-        // Пример для квадратов уникальных элементов
-        List<Integer> numsWithDuplicates = Arrays.asList(2, 3, 2, 4, 5, 5, 6);
-        List<Integer> uniqueSquares = MyMethods.uniqueSquares(numsWithDuplicates);
-        System.out.println("Квадраты уникальных элементов: " + uniqueSquares);
+    public static void runDuplicates(List<Integer> numbers, Consumer<String> printer) {
+        List<Integer> result = MyMethods.uniqueSquares(numbers);
+        printer.accept("Квадраты уникальных элементов: " + result.toString());
+    }
 
-        // Пример для получения последнего элемента
-        List<String> sampleList = Arrays.asList("first", "middle", "last");
-        String lastElement = MyMethods.getLastElement(sampleList);
-        System.out.println("Последний элемент: " + lastElement);
+    public static void runLastElement(Collection<Object> collection, Consumer<String> printer) {
+        Object result = MyMethods.getLastElement(collection);
+        printer.accept("Последний элемент: " + result.toString());
+    }
 
-        // Пример для суммы чётных чисел
-        int[] array = { 1, 2, 3, 4, 5, 6 };
-        int evenSum = MyMethods.sumEven(array);
-        System.out.println("Сумма чётных чисел: " + evenSum);
+    public static void runEvenSum(int[] numbers, Consumer<String> printer) {
+        int result = MyMethods.sumEven(numbers);
+        printer.accept("Последний элемент: " + result);
+    }
 
-        // Пример для преобразования строк в Map
-        List<String> stringList = Arrays.asList("apple", "banana", "cherry", "gavocado");
-        Map<Character, String> charMap = MyMethods.toCharMap(stringList);
-        System.out.println("Преобразование в Map:");
-        charMap.forEach((k, v) -> System.out.println(k + " -> " + v));
+    public static void runCharMap(List<String> strings, Consumer<String> printer) {
+        Map<Character, String> result = MyMethods.toCharMap(strings);
+        printer.accept("Преобразование в Map:");
+        result.forEach((k, v) -> printer.accept(k + " -> " + v));
     }
 
 }

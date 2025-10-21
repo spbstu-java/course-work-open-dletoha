@@ -36,4 +36,10 @@ public enum MovementOption {
                 .filter(opt -> opt.code.equals(code))
                 .findFirst();
     }
+
+    @Override
+    public String toString() {
+        return getDescription();
+    }
+
 }

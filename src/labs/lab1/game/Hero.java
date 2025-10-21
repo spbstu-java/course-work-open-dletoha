@@ -1,5 +1,7 @@
 package labs.lab1.game;
 
+import java.util.function.Consumer;
+
 import labs.lab1.strategy.MovementStrategy;
 
 public class Hero {
@@ -9,11 +11,11 @@ public class Hero {
         this.movementStrategy = strategy;
     }
 
-    public void move() {
+    public void move(Consumer<String> printer) {
         if (movementStrategy != null) {
-            movementStrategy.move();
+            movementStrategy.move(printer);
         } else {
-            System.out.println("No movement strategy specified");
+            printer.accept("No movement strategy specified");
         }
     }
 }

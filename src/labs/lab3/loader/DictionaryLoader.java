@@ -18,7 +18,6 @@ public class DictionaryLoader {
     public static Map<String, String> load(String filePath)
             throws InvalidFileFormatException, FileReadException {
         Map<String, String> temp = new LinkedHashMap<>();
-
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
